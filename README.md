@@ -7,7 +7,7 @@
 Ui make by Vittorio Ewing: [figma](https://www.figma.com/community/file/1107567946234728369
 )
 
-[View app](https://heroic-otter-a9308a.netlify.app)
+[View app](https://exquisite-crumble-6c4542.netlify.app)
 
 ![image](./screenshot/screenshot.png)
 
