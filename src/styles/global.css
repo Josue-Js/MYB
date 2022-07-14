@@ -1,0 +1,43 @@
+:root {
+  --color-primary: #5243C2;
+  --color-primary-ghost: #5243c2e6;
+  --color-red200: #FFEDED;
+  --color-danger: #FF4D4F;
+  --color-black: #1F2939;
+  --color-muted: #949BA6;
+  --color-titan-white: #F5F5FF;
+  --color-black-squeeze: #F0F7FA;
+  --color-white: #FFFFFF;
+  --color-red-200: #FFEDED;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  max-width: 1500px;
+  margin: 0 auto;
+  background-size: cover;
+  background: url('src/assets/background.png') no-repeat;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  color: var(--color-black);
+  background: var(--color-white);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
