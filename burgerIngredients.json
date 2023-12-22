@@ -38,8 +38,8 @@
         "default": "onion.png",
         "group": "onion_group.png",
         "offset": {
-          "top": 74,
-          "bottom": 88
+          "top": 50,
+          "bottom": 86
         }
       },
       "kcal": 680,
