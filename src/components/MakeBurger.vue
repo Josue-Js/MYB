@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import BurgerBg from '../../public/burger_bg.svg';
 
 type IBurgerIngredient = {
@@ -24,26 +24,30 @@ type Props = {
 }
 
 const props = defineProps<Props>();
-const isMobile =  ref(false);
+const isMobile = ref(false);
 const bunBottomOffsetTop = isMobile ? 35 : 60;
 const body = document.querySelector('body') as HTMLElement;
 
+onMounted(() => {
+  if (body.clientWidth <= 500) {
+    isMobile.value = true;
+  } else {
+    isMobile.value = false;
+  }
 
-window.addEventListener('load', () => {
-  if(body.clientWidth <= 500){
-    isMobile.value = true;
-  } else {
-    isMobile.value = false;
-  }
-});
-window.addEventListener('resize', () => {
-  const bodyWidth = body?.clientWidth as number;
-  if(bodyWidth <= 500){
-    isMobile.value = true;
-  } else {
-    isMobile.value = false;
-  }
-});
+
+  window.addEventListener('resize', () => {
+    const bodyWidth = body?.clientWidth as number;
+    if (bodyWidth <= 500) {
+      isMobile.value = true;
+    } else {
+      isMobile.value = false;
+    }
+  });
+
+})
+
+
 </script>
 
 <template>
@@ -52,18 +56,15 @@ window.addEventListener('resize', () => {
 
     <div v-if="props.burgerIngredients.length" class="makingBurger">
       <div class="ingredients">
-        <figure 
-        class="ingredient" 
-        v-for="(ingredient, index) in props.burgerIngredients" :style="`transform: translateY(${index === burgerIngredients.length - 1
-        ?  (ingredient.image.offset.bottom + bunBottomOffsetTop)
-        : (props.burgerIngredients.slice(index)
-          .reduce((a, b) => a + b.image.offset.top + b.image.offset.bottom, 0) + bunBottomOffsetTop - ingredient.image.offset.top) *
-          (isMobile ? (ingredient.image.height * 74 / 100) / ingredient.image.height : 1)
-        }px); z-index: ${100 - index}`" 
-        :data-ingredient="ingredient.name">
+        <figure class="ingredient" v-for="(ingredient, index) in props.burgerIngredients" :style="`transform: translateY(${index === burgerIngredients.length - 1
+      ? (ingredient.image.offset.bottom + bunBottomOffsetTop)
+      : (props.burgerIngredients.slice(index)
+        .reduce((a, b) => a + b.image.offset.top + b.image.offset.bottom, 0) + bunBottomOffsetTop - ingredient.image.offset.top) *
+      (isMobile ? (ingredient.image.height * 74 / 100) / ingredient.image.height : 1)
+      }px); z-index: ${100 - index}`" :data-ingredient="ingredient.name">
           <img :src="`/${ingredient.image.group ?
-          ingredient.image.group
-          : ingredient.image.default}`" :alt="ingredient.name"/>
+      ingredient.image.group
+      : ingredient.image.default}`" :alt="ingredient.name" />
         </figure>
       </div>
 
